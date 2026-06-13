@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusX ML Companion & Decision Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Sidebar / Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">
+          <i data-lucide="brain-circuit"></i>
+        </div>
+        <div>
+          <h2>ML Companion</h2>
+          <span>CampusX 100 Days of ML</span>
+        </div>
+      </div>
+      
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="dashboard">
+          <i data-lucide="layout-grid"></i>
+          <span>Dashboard & Cheat Sheet</span>
+        </button>
+        <button class="nav-btn" data-tab="wizard">
+          <i data-lucide="git-fork"></i>
+          <span>Decision Wizard</span>
+        </button>
+        <!-- Theme Toggle Button -->
+        <button class="nav-btn" id="theme-toggle-btn" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 18px; border-radius: 0 12px 12px 0;">
+          <span id="theme-icon-container" style="display: flex; align-items: center; justify-content: center;"><i data-lucide="sun" id="theme-icon"></i></span>
+          <span id="theme-text">Light Mode</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="info-card">
+          <i data-lucide="info"></i>
+          <p>Click any technique to see local video frames, scikit-learn code, and open notes.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Tab: Dashboard / Cheat Sheet -->
+      <section id="dashboard-tab" class="tab-content active">
+        <header class="tab-header">
+          <div>
+            <h1>Machine Learning Technique Directory</h1>
+            <p class="subtitle">Quickly search, filter, and review 30+ classical ML preprocessing and modeling techniques.</p>
+          </div>
+        </header>
+
+        <!-- Search and Filters Section -->
+        <div class="search-filter-section">
+          <div class="search-bar">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="search-input" placeholder="Search by name, intuition, or keyword (e.g., 'imbalance', 'outliers', 'scale')...">
+          </div>
+          
+          <div class="filter-group">
+            <span class="filter-label">Filter Category:</span>
+            <div class="filter-tags" id="category-filters">
+              <button class="filter-tag active" data-category="all">All</button>
+              <button class="filter-tag" data-category="scaling">Feature Scaling</button>
+              <button class="filter-tag" data-category="encoding">Categorical Encoding</button>
+              <button class="filter-tag" data-category="imputation">Imputation</button>
+              <button class="filter-tag" data-category="outliers">Outliers</button>
+              <button class="filter-tag" data-category="transformers">Transformers</button>
+              <button class="filter-tag" data-category="dim-red">Dim Reduction</button>
+              <button class="filter-tag" data-category="regression">Regression</button>
+              <button class="filter-tag" data-category="classification">Classification</button>
+              <button class="filter-tag" data-category="ensembles">Ensembles</button>
+              <button class="filter-tag" data-category="clustering">Clustering</button>
+              <button class="filter-tag" data-category="advanced">Advanced (SMOTE/Optuna)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Techniques Grid -->
+        <div class="techniques-grid" id="techniques-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Tab: Decision Wizard -->
+      <section id="wizard-tab" class="tab-content">
+        <header class="tab-header">
+          <div>
+            <h1>Interactive ML Decision Wizard</h1>
+            <p class="subtitle">Struggling with what preprocessing method or model to use? Answer a few questions about your data characteristics.</p>
+          </div>
+        </header>
+
+        <div class="wizard-container">
+          <div class="wizard-card">
+            <!-- Progress Bar -->
+            <div class="wizard-progress">
+              <div class="progress-bar-fill" id="wizard-progress-fill" style="width: 25%;"></div>
+            </div>
+            
+            <div class="wizard-body">
+              <div class="wizard-tip" id="wizard-tip" style="display: none;">
+                <i data-lucide="lightbulb" class="tip-icon"></i>
+                <span id="wizard-tip-text"></span>
+              </div>
+              <div class="question-container" id="question-box">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+            
+            <div class="wizard-footer">
+              <button class="btn btn-secondary" id="wizard-back-btn" style="visibility: hidden;">
+                <i data-lucide="arrow-left"></i> Back
+              </button>
+              <button class="btn btn-primary" id="wizard-restart-btn">
+                <i data-lucide="rotate-ccw"></i> Restart Wizard
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Detail Drawer (Slide-out Panel) -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="detail-drawer" id="detail-drawer">
+      <button class="drawer-close" id="drawer-close-btn">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="drawer-content" id="drawer-content">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Load Database Files -->
+  <script src="techniques.js"></script>
+  <script src="frames_mapping.js"></script>
+  <!-- Load App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
